@@ -1,14 +1,21 @@
-from flask import Flask, render_template, request, send_file
-from database import create_tables, insert_contract, get_all_contracts, insert_user, get_user, DATABASE_NAME
+from flask import Flask, render_template, request, send_file, redirect
+from database import create_tables, insert_contract, get_all_contracts, insert_user, get_user, get_user_by_id, DATABASE_NAME
 import sqlite3
 import os
 from flask_login import UserMixin, LoginManager, login_user, logout_user, login_required
+from werkzeug.security import check_password_hash
 
 app = Flask(__name__)
 app.secret_key = "#0D031B"
 
 login_manager = LoginManager()
 login_manager.init_app(app)
+login_manager.login_view = "login"
+
+class User(UserMixin):
+    def __init__(self, id, username):
+        self.id = id
+        self.username = username
 
 UPLOAD_FOLDER = 'uploads'
 ALLOWED_EXTENSIONS = {'pdf', 'docx', 'doc'}
@@ -18,6 +25,7 @@ def way_route():
     return render_template("index.html")
 
 @app.route("/cadastrar", methods=["GET", "POST"])
+@login_required
 def cadastrar():
     if request.method == "POST":
         client = request.form.get("client")
@@ -47,11 +55,13 @@ def cadastrar():
     return render_template("cadastrar.html")
 
 @app.route("/listar")
+@login_required
 def listar():
     contracts = get_all_contracts()
     return render_template("listar.html", contracts=contracts)
 
 @app.route("/status")
+@login_required
 def view_status():
     contracts = get_all_contracts()
     return render_template("status.html", contracts=contracts)
@@ -81,13 +91,36 @@ def registrar():
 @app.route("/login", methods=["GET", "POST"])
 def login():
     if request.method == "POST":
-        ...
+        username = request.form.get("username")
+        user_password = request.form.get("user_password")
+
+        user_name = get_user(username)
+        if user_name is None:
+            return redirect("/login")
+
+        if check_password_hash(user_name[2], user_password):
+            login_user(User(user_name[0], user_name[1]))
+            return redirect("/")
+        else:
+            return redirect("/login")
+        
     return render_template("login.html")
 
-class User(UserMixin):
-    def __init__(self, id, username):
-        self.id = id
-        self.username = username
+
+@login_manager.user_loader
+def load_user(id):
+    user_id = get_user_by_id(id)
+
+    if user_id is None:
+        return None
+    
+    return User(user_id[0], user_id[1])
+
+@app.route("/logout")
+def logout():
+    logout_user()
+    return redirect("/login")
+    
 
 if __name__ == "__main__":
     create_tables()
