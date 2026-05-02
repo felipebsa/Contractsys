@@ -259,6 +259,41 @@ button[type="submit"]:hover {
     text-decoration: underline;
 }
 
+/* ===== FILE UPLOAD ===== */
+input[type="file"] {
+    width: 100%;
+    padding: 10px 12px;
+    border: 2px dashed #c0cfe0;
+    border-radius: 8px;
+    font-size: 0.9em;
+    color: #555;
+    background: #f8fbff;
+    cursor: pointer;
+    transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+input[type="file"]:hover {
+    border-color: #005bb5;
+    background: #eef4ff;
+}
+
+input[type="file"]::file-selector-button {
+    background: linear-gradient(135deg, #003d7a 0%, #005bb5 100%);
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 0.88em;
+    font-weight: 600;
+    cursor: pointer;
+    margin-right: 12px;
+    transition: opacity 0.2s ease;
+}
+
+input[type="file"]::file-selector-button:hover {
+    opacity: 0.88;
+}
+
 /* ===== FILTRO ===== */
 .filter-form {
     display: flex;
