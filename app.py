@@ -86,6 +86,7 @@ def registrar():
         user_password = request.form.get("user_password")
 
         insert_user(username, user_password)
+        return redirect("/login")
     return render_template("registrar.html")
 
 @app.route("/login", methods=["GET", "POST"])
