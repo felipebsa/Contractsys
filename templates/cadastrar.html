@@ -4,29 +4,48 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-    <title>Cadastrar Contrato - Cadastro</title>
+    <title>Cadastrar Contrato - Contractsys</title>
 </head>
 <body>
+    <nav>
+        <a href="/">Home</a>
+        <hr>
+        <a href="/cadastrar">Cadastrar Contrato</a>
+        <hr>
+        <a href="/listar">Listar Contratos</a>
+        <hr>
+        <a href="/status">Status dos Contratos</a>
+        <hr>
+    </nav>
+
     <header>
-        <div>
-            <h1>Cadastrar Novo Contrato</h1>
-        </div>
-        <div>
-            <h3>Sistema de Gerenciamento de Contratos</h3>
+        <div class="header-content">
+            <div>
+                <h1>Cadastrar Novo Contrato</h1>
+                <h3>Sistema de Gerenciamento de Contratos</h3>
+            </div>
+            <div class="header-auth">
+                {% if current_user.is_authenticated %}
+                    <span class="user-greeting">Olá, {{ current_user.username }}</span>
+                    <a href="/logout" class="btn-nav-auth btn-logout">Sair</a>
+                {% else %}
+                    <a href="/login" class="btn-nav-auth">Entrar</a>
+                    <a href="/registrar" class="btn-nav-auth btn-register">Registrar</a>
+                {% endif %}
+            </div>
         </div>
     </header>
+
     <main>
         <form method="POST" action="/cadastrar" enctype="multipart/form-data">
             <div>
                 <label for="name">Nome do Cliente</label>
                 <input type="text" name="client" id="name" required placeholder="Nome Completo">
             </div>
-            <br> 
             <div>
                 <label for="cpf">CPF</label>
                 <input type="text" name="cpf_client" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" maxlength="14" inputmode="numeric" id="cpf" required placeholder="000.000.000-00">
             </div>
-            <br> 
             <div>
                 <label for="location">Local</label>
                 <input type="text" name="local" id="location" required placeholder="Rua, N° ou APT, Bairro">
@@ -35,48 +54,26 @@
                 <label for="locationCep">CEP</label>
                 <input type="text" inputmode="numeric" pattern="\d{5}-\d{3}" maxlength="9" name="cep" id="locationCep" required placeholder="00000-000">
             </div>
-            <br> 
             <div>
                 <label for="rent">Valor do Aluguel</label>
                 <input type="number" name="rent_value" id="rent" step="0.01" placeholder="0.00">
             </div>
-            <br> 
             <div>
                 <label for="entry">Data de Entrada</label>
                 <input type="date" name="entry_date" id="entry" required>
             </div>
-            <br> 
             <div>
                 <label for="contact">Email</label>
                 <input type="email" name="email_user" id="contact" placeholder="Contato">
             </div>
-            <br>
             <div>
                 <label for="file_contract">Arquivo</label>
                 <input type="file" name="file_upload" id="file_contract">
-            </div>   
-            <br> 
+            </div>
             <div>
                 <button type="submit">Cadastrar</button>
             </div>
-            <br> 
         </form>
     </main>
-    <nav>
-        <br> <br>
-        <a href="/">Home</a>
-        <hr> 
-        <a href="/cadastrar">Cadastrar Contrato</a>
-        <hr>
-        <a href="/listar">Listar Contratos</a>
-        <hr>
-        <a href="/status">Status dos Contratos</a>
-        <hr>
-        <a href="/registrar">Registrar Usuario</a>
-        <hr>
-        <a href="/login">Logar Usuario</a>
-        <hr>
-    </nav>
-    
 </body>
 </html>

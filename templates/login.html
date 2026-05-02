@@ -4,50 +4,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-    <title>Logar Usuario - Login</title>
+    <title>Login - Contractsys</title>
 </head>
 <body>
-    <header>
-        <div>
-            <h1>Logar Usuario</h1>
-        </div>
-        <div>
-            <h3>Sistema de Gerenciamento de Contratos</h3>
-        </div>
-    </header>
-    <main>
-        <form method="POST" action="/login">
-            <div>
-                <label for="username">Username</label>
-                <input type="text" name="username" id="username" required placeholder="Username">
-            </div>
-            <br> 
-            <div>
-                <label for="user_password">Password</label>
-                <input type="password" name="user_password" id="user_password" required placeholder="Password">
-            </div>
-            <br> 
-            <div>
-                <button type="submit">Logar</button>
-            </div>
-            <br> 
-        </form>
-    </main>
     <nav>
-        <br> <br>
         <a href="/">Home</a>
-        <hr> 
+        <hr>
         <a href="/cadastrar">Cadastrar Contrato</a>
         <hr>
         <a href="/listar">Listar Contratos</a>
         <hr>
         <a href="/status">Status dos Contratos</a>
         <hr>
-        <a href="/registrar">Registrar Usuario</a>
-        <hr>
-        <a href="/login">Logar Usuario</a>
-        <hr>
     </nav>
-    
+
+    <div class="auth-wrapper">
+        <div class="auth-card">
+            <div class="auth-header">
+                <h2>Contractsys</h2>
+                <p>Entrar em conta existente</p>
+            </div>
+            <form method="POST" action="/login">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" name="username" id="username" required placeholder="Digite seu username">
+                </div>
+                <div class="form-group">
+                    <label for="user_password">Senha</label>
+                    <input type="password" name="user_password" id="user_password" required placeholder="Digite sua senha">
+                </div>
+                <button type="submit" class="btn-auth">Entrar</button>
+                <p class="auth-link">Não tem conta? <a href="/registrar">Registrar</a></p>
+            </form>
+        </div>
+    </div>
 </body>
 </html>

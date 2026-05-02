@@ -4,31 +4,51 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-    <title> Contratos - Listagem</title>
+    <title>Contratos - Listagem</title>
 </head>
 <body>
+    <nav>
+        <a href="/">Home</a>
+        <hr>
+        <a href="/cadastrar">Cadastrar Contrato</a>
+        <hr>
+        <a href="/listar">Listar Contratos</a>
+        <hr>
+        <a href="/status">Status dos Contratos</a>
+        <hr>
+    </nav>
+
     <header>
-        <div>
-            <h1>Contratos Salvos</h1>
-        </div>
-        <div>
-            <h3>Sistema de Gerenciamento de Contratos</h3>
+        <div class="header-content">
+            <div>
+                <h1>Contratos Salvos</h1>
+                <h3>Sistema de Gerenciamento de Contratos</h3>
+            </div>
+            <div class="header-auth">
+                {% if current_user.is_authenticated %}
+                    <span class="user-greeting">Olá, {{ current_user.username }}</span>
+                    <a href="/logout" class="btn-nav-auth btn-logout">Sair</a>
+                {% else %}
+                    <a href="/login" class="btn-nav-auth">Entrar</a>
+                    <a href="/registrar" class="btn-nav-auth btn-register">Registrar</a>
+                {% endif %}
+            </div>
         </div>
     </header>
+
     <main>
         <table>
             <thead>
                 <tr>
                     <th>ID</th>
                     <th>Cliente</th>
-                    <th>Cpf</th>
+                    <th>CPF</th>
                     <th>Local</th>
-                    <th>Cep</th>
+                    <th>CEP</th>
                     <th>Valor</th>
                     <th>Data Entrada</th>
                     <th>Email</th>
                 </tr>
-                
             </thead>
             <tbody>
                 {% for contract in contracts %}
@@ -46,20 +66,5 @@
             </tbody>
         </table>
     </main>
-    <nav>
-        <br> <br>
-        <a href="/">Home</a>
-        <hr> 
-        <a href="/cadastrar">Cadastrar Contrato</a>
-        <hr>
-        <a href="/listar">Listar Contratos</a>
-        <hr>
-        <a href="/status">Status dos Contratos</a>
-        <hr>
-        <a href="/registrar">Registrar Usuario</a>
-        <hr>
-        <a href="/login">Logar Usuario</a>
-        <hr>
-    </nav>
 </body>
 </html>

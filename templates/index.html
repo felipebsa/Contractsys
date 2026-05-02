@@ -4,31 +4,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-    <title>Contractys - Home</title>
+    <title>Contractsys - Home</title>
 </head>
 <body>
-    <header>
-        <div>
-            <h1>Bem vindo ao Contractsys</h1>
-        </div>
-        <div>
-            <h3>Sistema de Gerenciamento de Contratos</h3>
-        </div>
-    </header>
     <nav>
-        <br> <br>
         <a href="/">Home</a>
-        <hr> 
+        <hr>
         <a href="/cadastrar">Cadastrar Contrato</a>
         <hr>
         <a href="/listar">Listar Contratos</a>
         <hr>
         <a href="/status">Status dos Contratos</a>
         <hr>
-        <a href="/registrar">Registrar Usuario</a>
-        <hr>
-        <a href="/login">Logar Usuario</a>
-        <hr>
     </nav>
+
+    <header>
+        <div class="header-content">
+            <div>
+                <h1>Bem vindo ao Contractsys</h1>
+                <h3>Sistema de Gerenciamento de Contratos</h3>
+            </div>
+            <div class="header-auth">
+                {% if current_user.is_authenticated %}
+                    <span class="user-greeting">Olá, {{ current_user.username }}</span>
+                    <a href="/logout" class="btn-nav-auth btn-logout">Sair</a>
+                {% else %}
+                    <a href="/login" class="btn-nav-auth">Entrar</a>
+                    <a href="/registrar" class="btn-nav-auth btn-register">Registrar</a>
+                {% endif %}
+            </div>
+        </div>
+    </header>
 </body>
 </html>

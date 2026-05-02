@@ -10,9 +10,10 @@ body {
     background-color: #f5f5f5;
     color: #333;
     line-height: 1.6;
+    margin-left: 250px;
 }
 
-/* ===== NAVEGAÇÃO LATERAL (PRETA) ===== */
+/* ===== NAVEGAÇÃO LATERAL ===== */
 nav {
     position: fixed;
     left: 0;
@@ -46,29 +47,76 @@ nav hr {
     margin: 15px 0;
 }
 
-/* ===== CONTEÚDO PRINCIPAL (com margem pra não ficar embaixo do nav) ===== */
-body {
-    margin-left: 250px;
-}
-
+/* ===== HEADER ===== */
 header {
     background: linear-gradient(135deg, #003d7a 0%, #005bb5 100%);
     color: white;
-    padding: 40px 50px;
+    padding: 30px 50px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 header h1 {
-    color: #1a1a1a;
-    font-size: 2.5em;
-    margin-bottom: 10px;
+    color: #ffffff;
+    font-size: 2em;
+    margin-bottom: 6px;
 }
 
 header h3 {
     font-weight: 300;
-    opacity: 0.9;
+    opacity: 0.85;
+    font-size: 1em;
 }
 
+/* ===== BOTÕES DO HEADER (login/registrar/logout) ===== */
+.header-auth {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.user-greeting {
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 0.9em;
+    margin-right: 6px;
+}
+
+.btn-nav-auth {
+    color: #ffffff;
+    text-decoration: none;
+    padding: 8px 18px;
+    border-radius: 6px;
+    font-size: 0.9em;
+    font-weight: 500;
+    border: 1.5px solid rgba(255, 255, 255, 0.5);
+    transition: all 0.2s ease;
+}
+
+.btn-nav-auth:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+    border-color: #ffffff;
+}
+
+.btn-register {
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
+.btn-logout {
+    border-color: rgba(255, 100, 100, 0.6);
+    color: #ffaaaa;
+}
+
+.btn-logout:hover {
+    background-color: rgba(255, 80, 80, 0.2);
+    border-color: #ff8888;
+}
+
+/* ===== CONTEÚDO PRINCIPAL ===== */
 main {
     padding: 40px 50px;
     max-width: 1200px;
@@ -97,7 +145,8 @@ label {
 input[type="text"],
 input[type="number"],
 input[type="date"],
-input[type="email"] {
+input[type="email"],
+input[type="password"] {
     width: 100%;
     padding: 12px 15px;
     border: 2px solid #e0e0e0;
@@ -126,6 +175,88 @@ button[type="submit"] {
 button[type="submit"]:hover {
     transform: translateY(-2px);
     box-shadow: 0 6px 12px rgba(0, 61, 122, 0.3);
+}
+
+/* ===== TELA DE AUTH (login/registrar) ===== */
+.auth-wrapper {
+    min-height: calc(100vh - 0px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+    background-color: #f0f4f8;
+}
+
+.auth-card {
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 8px 30px rgba(0, 61, 122, 0.12);
+    padding: 40px;
+    width: 100%;
+    max-width: 420px;
+    border-top: 4px solid #003d7a;
+}
+
+.auth-header {
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+.auth-header h2 {
+    font-size: 1.8em;
+    color: #003d7a;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
+
+.auth-header p {
+    color: #888;
+    font-size: 0.9em;
+    margin-top: 6px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.btn-auth {
+    width: 100%;
+    padding: 14px;
+    background: linear-gradient(135deg, #003d7a 0%, #005bb5 100%);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    margin-top: 8px;
+}
+
+.btn-auth:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 61, 122, 0.3);
+}
+
+.btn-auth-register {
+    background: linear-gradient(135deg, #005bb5 0%, #0077e6 100%);
+}
+
+.auth-link {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 0.9em;
+    color: #666;
+}
+
+.auth-link a {
+    color: #005bb5;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.auth-link a:hover {
+    text-decoration: underline;
 }
 
 /* ===== TABELAS ===== */
@@ -170,14 +301,13 @@ tbody tr:last-child {
     border-bottom: none;
 }
 
-/* ===== GRID DE CONTRATOS (FEITO POR GEMINI) ===== */
+/* ===== GRID DE CONTRATOS ===== */
 .contratos-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
     gap: 20px;
     padding: 20px 0;
 }
-
 
 .contrato-card {
     background-color: #ffffff;
@@ -202,7 +332,6 @@ tbody tr:last-child {
     margin-bottom: 15px;
 }
 
-
 .arquivo-area {
     display: flex;
     flex-direction: column;
@@ -217,13 +346,12 @@ tbody tr:last-child {
 
 .contrato-card iframe {
     width: 100%;
-    aspect-ratio: 1 / 1.41; 
+    aspect-ratio: 1 / 1.41;
     border: 1px solid #ddd;
     border-radius: 6px;
     background-color: #f9f9f9;
     margin-bottom: 15px;
 }
-
 
 .btn-download {
     display: block;
