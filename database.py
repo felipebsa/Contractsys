@@ -91,5 +91,34 @@ def get_user_by_id(id):
     conn.close()
     return results
 
+def order_by(order):
+    conn = sqlite3.connect(DATABASE_NAME)
+    cursor = conn.cursor()
 
+    if order == "alph":
+        cursor.execute("""
+            SELECT * FROM contracts ORDER BY client_name
+        """)
+        results = cursor.fetchall()
+
+    elif order == "value_asc":
+        cursor.execute("""
+            SELECT * FROM contracts ORDER BY rent_value ASC
+        """)
+        results = cursor.fetchall()
+
+    elif order == "value_desc":
+        cursor.execute("""
+            SELECT * FROM contracts ORDER BY rent_value DESC
+        """)
+        results = cursor.fetchall()
+    
+    else:
+        cursor.execute("""
+        SELECT * FROM contracts
+        """)
+        results = cursor.fetchall()
+
+    conn.close()
+    return results
 

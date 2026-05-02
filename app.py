@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, send_file, redirect
-from database import create_tables, insert_contract, get_all_contracts, insert_user, get_user, get_user_by_id, DATABASE_NAME
+from database import create_tables, insert_contract, get_all_contracts, insert_user, get_user, get_user_by_id, order_by, DATABASE_NAME
 import sqlite3
 import os
 from flask_login import UserMixin, LoginManager, login_user, logout_user, login_required
@@ -50,14 +50,15 @@ def cadastrar():
         print(f"Cliente: {client}")
 
         insert_contract(client, cpf_client, local, cep, rent_value, entry_date, email_user, file_path)
-        return("contrato cadastrado com sucesso!")
+        return redirect("/listar")
     
     return render_template("cadastrar.html")
 
 @app.route("/listar")
 @login_required
 def listar():
-    contracts = get_all_contracts()
+    order = request.args.get("order")
+    contracts = order_by(order)
     return render_template("listar.html", contracts=contracts)
 
 @app.route("/status")

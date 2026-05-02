@@ -259,6 +259,81 @@ button[type="submit"]:hover {
     text-decoration: underline;
 }
 
+/* ===== FILTRO ===== */
+.filter-form {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background: white;
+    padding: 16px 24px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.filter-label {
+    font-weight: 600;
+    color: #003d7a;
+    font-size: 0.95em;
+    white-space: nowrap;
+}
+
+.filter-cards {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.filter-card {
+    cursor: pointer;
+}
+
+.filter-card input[type="radio"] {
+    display: none;
+}
+
+.filter-card span {
+    display: block;
+    padding: 8px 18px;
+    border-radius: 6px;
+    font-size: 0.9em;
+    font-weight: 500;
+    border: 2px solid #e0e0e0;
+    color: #555;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.filter-card:hover span {
+    border-color: #005bb5;
+    color: #003d7a;
+}
+
+.filter-card input[type="radio"]:checked + span {
+    background: linear-gradient(135deg, #003d7a 0%, #005bb5 100%);
+    border-color: #003d7a;
+    color: white;
+}
+
+.btn-filter {
+    background: linear-gradient(135deg, #003d7a 0%, #005bb5 100%);
+    color: white;
+    padding: 8px 20px;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.9em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    margin-left: auto;
+}
+
+.btn-filter:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 10px rgba(0, 61, 122, 0.3);
+}
+
 /* ===== TABELAS ===== */
 table {
     width: 100%;

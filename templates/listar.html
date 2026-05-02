@@ -37,6 +37,24 @@
     </header>
 
     <main>
+        <form method="GET" action="/listar" class="filter-form">
+            <div class="filter-cards">
+                <label class="filter-card">
+                    <input type="radio" name="order" value="alph" {% if request.args.get('order') == 'alph' %}checked{% endif %}>
+                    <span>Nome (A-Z)</span>
+                </label>
+                <label class="filter-card">
+                    <input type="radio" name="order" value="value_asc" {% if request.args.get('order') == 'value_asc' %}checked{% endif %}>
+                    <span>Valor (menor)</span>
+                </label>
+                <label class="filter-card">
+                    <input type="radio" name="order" value="value_desc" {% if request.args.get('order') == 'value_desc' %}checked{% endif %}>
+                    <span>Valor (maior)</span>
+                </label>
+            </div>
+            <button type="submit" class="btn-filter">Filtrar</button>
+        </form>
+
         <table>
             <thead>
                 <tr>
